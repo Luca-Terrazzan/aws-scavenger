@@ -1,0 +1,19 @@
+{
+  "name": "aws-scavenger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Luca-Terrazzan/aws-scavenger.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Luca-Terrazzan/aws-scavenger/issues"
+  },
+  "homepage": "https://github.com/Luca-Terrazzan/aws-scavenger#readme"
+}
