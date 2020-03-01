@@ -1,14 +1,23 @@
 import { Product } from './product';
-
-const sampleProducts: string[] = [
-    'https://www.amazon.it/gp/product/B07Y8YWTFL',
-    'https://www.amazon.it/Xiaomi-Smartphone-2280x1080-Snapdragon-Fotocamera/dp/B008I0YEWE'
-];
+import { Config } from './config/config';
 
 async function main() {
-    const product = new Product(sampleProducts[1], 'note 8 pro');
-    const price: number = await product.getPrice();
-    console.log(price);
+
+    // Get products and their details
+    const configuration = new Config();
+    const products = configuration.getProductsDetail();
+
+    // Start to poll for products prices
+    while (true) {
+        const productsPricesPromises: Promise<number>[] = [];
+        for (const product of products) {
+            productsPricesPromises.push((new Product(product.url, product.name)).getPrice());
+        }
+
+        Promise.all(
+            productsPricesPromises
+        );
+    }
 
 }
 
