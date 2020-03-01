@@ -1,4 +1,4 @@
-import { products } from "./config.json";
+import { products } from "./productsData.json";
 
 type ProductDetails = {
     url: string;

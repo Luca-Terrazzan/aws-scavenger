@@ -8,16 +8,18 @@ async function main() {
     const products = configuration.getProductsDetail();
 
     // Start to poll for products prices
-    while (true) {
-        const productsPricesPromises: Promise<number>[] = [];
-        for (const product of products) {
-            productsPricesPromises.push((new Product(product.url, product.name)).getPrice());
-        }
-
-        Promise.all(
-            productsPricesPromises
-        );
+    // while (true) {
+    const productsPricesPromises: Promise<number>[] = [];
+    for (const product of products) {
+        productsPricesPromises.push((new Product(product.url, product.name)).getPrice());
     }
+
+    Promise.all(
+        productsPricesPromises
+    ).then((result) => {
+        console.log('results', result);
+    });
+    // }
 
 }
 
