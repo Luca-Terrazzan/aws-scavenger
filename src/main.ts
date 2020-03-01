@@ -18,6 +18,8 @@ async function main() {
         productsPricesPromises
     ).then((result) => {
         console.log('results', result);
+    }).catch((error) => {
+        console.log('errors', error);
     });
     // }
 

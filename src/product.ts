@@ -9,15 +9,21 @@ export class Product {
     public async getPrice(): Promise<number> {
         const productPage = await Axios.get(this.url);
         const parsedPage = parse(productPage.data) as unknown as (HTMLElement & { valid: boolean; });
-        const rawPriceString = parsedPage.querySelector('#priceblock_ourprice');
+        const amazonPriceHTML = parsedPage.querySelector('#priceblock_ourprice');
+        const salesPriceHTML = parsedPage.querySelector('#priceblock_saleprice');
 
-        if (!rawPriceString) {
-            throw Error(`Cannot fetch price for ${this.name}`);
+        if (!amazonPriceHTML && !salesPriceHTML) {
+            // Cannot throw here, or fail-fast promise.all will have problems later
+            // Just return a 'error' value
+            return -1;
         }
 
-        const price = parsecurrency(rawPriceString.innerHTML).value;
+        const prices: number[] = [];
 
-        return price;
+        amazonPriceHTML && prices.push(parsecurrency(amazonPriceHTML.innerHTML).value);
+        salesPriceHTML && prices.push(parsecurrency(salesPriceHTML.innerHTML).value);
+
+        return Math.min(...prices);
     }
 
 }
