@@ -14,6 +14,9 @@ export class Product {
     }
 
     public async getPrice(): Promise<ProductPrice> {
+        console.log('checking price for ', this.name);
+
+
         const productPage = await Axios.get(this.url);
         const parsedPage = parse(productPage.data) as unknown as (HTMLElement & { valid: boolean; });
         const amazonPriceHTML = parsedPage.querySelector('#priceblock_ourprice');
