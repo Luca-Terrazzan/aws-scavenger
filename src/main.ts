@@ -1,4 +1,4 @@
-import { Product } from './product';
+import { Product, ProductPrice } from './product';
 import { Config } from './config/config';
 
 async function main() {
@@ -9,7 +9,7 @@ async function main() {
 
     // Start to poll for products prices
     // while (true) {
-    const productsPricesPromises: Promise<number>[] = [];
+    const productsPricesPromises: Promise<ProductPrice>[] = [];
     for (const product of products) {
         productsPricesPromises.push((new Product(product.url, product.name)).getPrice());
     }
