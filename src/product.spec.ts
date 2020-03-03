@@ -1,4 +1,4 @@
-import { Product } from './product';
+import { Product, ProductPrice } from './product';
 
 describe('Product analyzer', () => {
 
@@ -9,9 +9,9 @@ describe('Product analyzer', () => {
 
     it('Should be able to get a product price', async () => {
         const product = new Product(sampleProducts[0], 'note 8 pro');
-        const price = await product.getPrice();
+        const price: ProductPrice = await product.getPrice();
 
-        expect(price).toBeGreaterThan(1);
+        expect(price.price).toBeGreaterThan(1);
     });
 
 });
