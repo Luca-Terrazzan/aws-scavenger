@@ -1,6 +1,7 @@
 # Configs
 config.json
 src/config/productsData.json
+src/telegram/botConfig.json
 
 # Logs
 logs
