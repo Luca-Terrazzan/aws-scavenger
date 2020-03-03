@@ -1,5 +1,6 @@
 {
   "botName": "botname",
   "botUsername": "botnamebot",
-  "token": "go to your telegram bot creation chat to get this"
+  "token": "go to your telegram bot creation chat to get this",
+  "chatId": "your recipient chat id"
 }
