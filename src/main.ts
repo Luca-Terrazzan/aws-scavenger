@@ -25,7 +25,7 @@ async function main() {
         }).catch((error) => {
             console.log('errors', error);
         });
-    }, 30000);
+    }, 30 * 1000);
 
 }
 
