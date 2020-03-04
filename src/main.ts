@@ -9,23 +9,23 @@ async function main() {
     const telegram = new TelegramService();
     const products = configuration.getProductsDetail();
 
-    // Start to poll for products prices
-    // while (true) {
-    const productsPricesPromises: Promise<ProductPrice>[] = [];
-    for (const product of products) {
-        productsPricesPromises.push((new Product(product.url, product.name)).getPrice());
-    }
+    setInterval(() => {
+        // Start to poll for products prices
+        const productsPricesPromises: Promise<ProductPrice>[] = [];
+        for (const product of products) {
+            productsPricesPromises.push((new Product(product.url, product.name)).getPrice());
+        }
 
-    Promise.all(
-        productsPricesPromises
-    ).then((result) => {
-        console.log('results', result);
-        telegram.pushProductPricesToTelegram(result);
+        Promise.all(
+            productsPricesPromises
+        ).then((result) => {
+            console.log('results', result);
+            telegram.pushProductPricesToTelegram(result);
 
-    }).catch((error) => {
-        console.log('errors', error);
-    });
-    // }
+        }).catch((error) => {
+            console.log('errors', error);
+        });
+    }, 30000);
 
 }
 
