@@ -4,7 +4,7 @@ describe('Telegram service', () => {
 
     it('Should be able to send a message', async () => {
         const telegramService: TelegramService = new TelegramService();
-        const messageResult = await telegramService.sendMessageToPrivateChat('test message from jest');
+        const messageResult = await telegramService.sendTelegramMessage('test message from jest');
 
         expect(messageResult).toBeDefined();
     });

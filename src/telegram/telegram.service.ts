@@ -13,7 +13,7 @@ export class TelegramService {
     this.telegramBot = new TelegramBot(this.token);
   }
 
-  public async sendMessageToPrivateChat(message: string): Promise<Message> {
+  public async sendTelegramMessage(message: string): Promise<Message> {
     const result:Message  = await this.telegramBot.sendMessage(this.recipient, message);
 
     return result;
