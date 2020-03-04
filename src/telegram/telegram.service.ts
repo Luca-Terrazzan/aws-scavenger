@@ -37,7 +37,7 @@ export class TelegramService {
 `;
     for (const price of prices) {
       message += `
-${this.formatPrice(price)}
+    ${this.formatPrice(price)}
 `;
     }
 
