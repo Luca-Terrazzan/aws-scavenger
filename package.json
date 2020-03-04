@@ -2,10 +2,11 @@
   "name": "aws-scavenger",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/main.ts",
   "scripts": {
     "test": "jest",
     "build": "tsc",
+    "dev": "tsc -w",
     "run": "ts-node src/main.ts"
   },
   "repository": {
