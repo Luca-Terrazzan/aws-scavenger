@@ -1,4 +1,4 @@
-import TelegramBot from 'node-telegram-bot-api';
+import TelegramBot, { Message } from 'node-telegram-bot-api';
 import * as Config from './botConfig.json';
 
 export class TelegramService {
@@ -13,8 +13,8 @@ export class TelegramService {
     this.telegramBot = new TelegramBot(this.token);
   }
 
-  public async sendMessageToPrivateChat(message: string) {
-    const result = await this.telegramBot.sendMessage(this.recipient, message);
+  public async sendMessageToPrivateChat(message: string): Promise<Message> {
+    const result:Message  = await this.telegramBot.sendMessage(this.recipient, message);
 
     return result;
   }
