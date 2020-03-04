@@ -15,19 +15,43 @@ export class TelegramService {
   }
 
   public async sendTelegramMessage(message: string): Promise<Message> {
+    const cleanMessage = this.escapeMessageForTelegramMarkdown(message);
     const result: Message = await this.telegramBot.sendMessage(
       this.recipient,
-      message,
+      cleanMessage,
       { parse_mode: 'MarkdownV2' }
     );
 
     return result;
   }
 
-  public buildTelegramMessageFromProductPrices(prices: ProductPrice[]): string {
-    const message = '';
+  public async pushProductPricesToTelegram(prices : ProductPrice[]): Promise<Message> {
+    return await this.sendTelegramMessage(
+      this.buildTelegramMessageFromProductPrices(prices)
+    );
+  }
 
-    return '';
+  private buildTelegramMessageFromProductPrices(prices: ProductPrice[]): string {
+    let message = `
+*I've scavenged this stuff* 👀
+`;
+    for (const price of prices) {
+      message += `
+${this.formatPrice(price)}
+`;
+    }
+
+    return message;
+  }
+
+  private formatPrice(price: ProductPrice): string {
+    return `[${price.name}](${price.url}): ${price.price}`;
+  }
+
+  private escapeMessageForTelegramMarkdown(message: string): string {
+    const escapedMessage = message.split('-').join('\\-').split('.').join('\\.');
+
+    return escapedMessage;
   }
 
 }

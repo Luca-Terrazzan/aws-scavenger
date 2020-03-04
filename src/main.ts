@@ -1,10 +1,12 @@
 import { Product, ProductPrice } from './product';
 import { Config } from './config/config';
+import { TelegramService } from './telegram/telegram.service';
 
 async function main() {
 
     // Get products and their details
     const configuration = new Config();
+    const telegram = new TelegramService();
     const products = configuration.getProductsDetail();
 
     // Start to poll for products prices
@@ -18,6 +20,8 @@ async function main() {
         productsPricesPromises
     ).then((result) => {
         console.log('results', result);
+        telegram.pushProductPricesToTelegram(result);
+
     }).catch((error) => {
         console.log('errors', error);
     });
