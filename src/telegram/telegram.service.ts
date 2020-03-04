@@ -1,5 +1,6 @@
 import TelegramBot, { Message } from 'node-telegram-bot-api';
 import * as Config from './botConfig.json';
+import { ProductPrice } from '../product';
 
 export class TelegramService {
 
@@ -14,9 +15,19 @@ export class TelegramService {
   }
 
   public async sendTelegramMessage(message: string): Promise<Message> {
-    const result:Message  = await this.telegramBot.sendMessage(this.recipient, message);
+    const result: Message = await this.telegramBot.sendMessage(
+      this.recipient,
+      message,
+      { parse_mode: 'MarkdownV2' }
+    );
 
     return result;
+  }
+
+  public buildTelegramMessageFromProductPrices(prices: ProductPrice[]): string {
+    const message = '';
+
+    return '';
   }
 
 }
