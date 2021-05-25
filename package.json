@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/Luca-Terrazzan/aws-scavenger#readme",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "node-html-parser": "^1.2.8",
     "node-telegram-bot-api": "^0.40.0",
     "parsecurrency": "^1.0.0",
